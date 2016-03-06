@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIS_Theatre.Data", "AIS_Theatre.Data\AIS_Theatre.Data.csproj", "{43FCB3FA-C8C2-4F36-8B4C-9CE54B8DA859}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIS_Theatre.DAL", "AIS_Theatre.DAL\AIS_Theatre.DAL.csproj", "{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43FCB3FA-C8C2-4F36-8B4C-9CE54B8DA859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FCB3FA-C8C2-4F36-8B4C-9CE54B8DA859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FCB3FA-C8C2-4F36-8B4C-9CE54B8DA859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FCB3FA-C8C2-4F36-8B4C-9CE54B8DA859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
