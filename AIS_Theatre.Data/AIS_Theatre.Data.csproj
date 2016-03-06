@@ -58,6 +58,7 @@
     <Compile Include="Entities\Database\Setting.cs" />
     <Compile Include="Entities\Database\Subscription.cs" />
     <Compile Include="Entities\Auxilary\Worker.cs" />
+    <Compile Include="Ticket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
