@@ -8,53 +8,55 @@ using System.Threading.Tasks;
 
 namespace AIS_Theatre.DAL
 {
-    internal class GenreRepository : BaseRepository<Guid, Genre>, IGenreRepository
+    internal class SeasonRepository : BaseRepository<Guid, Season>, ISeasonRepository
     {
-        public GenreRepository(NpgsqlConnection connection, NpgsqlTransaction transaction) : base(connection, transaction) { }
+        public SeasonRepository(NpgsqlConnection connection, NpgsqlTransaction transaction) : base(connection, transaction) { }
 
-        public override Guid Insert(Genre entity)
+        public override Guid Insert(Season entity)
         {
             return (Guid)
                 base.ExecuteScalar<Guid>(
-                        "insert into genre (id_genre, name_genre) values (@Id, @Name) SELECT SCOPE_IDENTITY()",
+                        "insert into season (id_season, begin_date_season, end_date_season) values (@Id, @BeginDate, @EndDate) SELECT SCOPE_IDENTITY()",
                         new SqlParameters
                         {
                             {"Id", entity.Id.ToString()},
-                            {"Name", entity.Name},
+                            {"BeginDate", entity.BeginDate},
+                            {"EndDate", entity.EndDate},
                         }
                     );
 
         }
 
-        public override bool Update(Genre entity)
+        public override bool Update(Season entity)
         {
             var res = base.ExecuteNonQuery(
-                    "update genre set name_genre = @Name  where id_genre = @Id ",
+                    "update season set begin_date_season = @BeginDate, end_date_season = @EndDate  where id_season = @Id ",
                     new SqlParameters
                     {
                         {"Id", entity.Id.ToString()},
-                        {"Name", entity.Name},
+                        {"BeginDate", entity.BeginDate},
+                        {"EndDate", entity.EndDate},
                     }
                 );
 
             return res > 0;
         }
-        
-        public Genre GetById(Guid id)
+
+        public Season GetById(Guid id)
         {
             return base.ExecuteSingleRowSelect(
-                    "select * from genre where id_genre = @Id",
+                    "select * from season where id_season = @Id",
                     new SqlParameters()
                     {
                         {"Id", id.ToString()}
                     }
                 );
         }
-        
+
         public bool Delete(Guid id)
         {
             var res = base.ExecuteNonQuery(
-                "delete from genre where id_genre = @Id",
+                "delete from season where id_season = @Id",
                 new SqlParameters()
                 {
                     { "Id", id.ToString() }
@@ -66,14 +68,14 @@ namespace AIS_Theatre.DAL
             return res == 1;
         }
 
-        public List<Genre> GetAll()
+        public List<Season> GetAll()
         {
-            return base.ExecuteSelect("Select * from genre");
+            return base.ExecuteSelect("select * from season");
         }
 
-        protected override Genre DefaultRowMapping(NpgsqlDataReader reader)
+        protected override Season DefaultRowMapping(NpgsqlDataReader reader)
         {
-            return new Genre(Guid.Parse((string)reader["id_genre"]), (string)reader["name_genre"]);
+            return new Season(Guid.Parse((string)reader["id_season"]), (string)reader["begin_date_season"], (string)reader["end_date_season"]);
         }
     }
 }

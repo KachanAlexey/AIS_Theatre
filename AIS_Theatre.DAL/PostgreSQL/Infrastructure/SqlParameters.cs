@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace AIS_Theatre.DAL
 {
-    internal class SqlParameters : Dictionary<string, object> { }
+    public class SqlParameters : Dictionary<string, object> { }
 }

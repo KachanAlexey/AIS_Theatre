@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace AIS_Theatre.DAL
 {
-    internal abstract class BaseRepository<TKey, TEntity> where TEntity : BaseEntity<TKey>
+    public abstract class BaseRepository<TKey, TEntity> where TEntity : BaseEntity<TKey>
     {
-        private readonly NpgsqlConnection _connection;
-        private readonly NpgsqlTransaction _transaction;
+        internal readonly NpgsqlConnection _connection;
+        internal readonly NpgsqlTransaction _transaction;
 
         protected BaseRepository(NpgsqlConnection connection, NpgsqlTransaction transaction)
         {
@@ -65,7 +65,7 @@ namespace AIS_Theatre.DAL
         }
 
 
-        protected IList<T> ExecuteSelect<T>(
+        protected List<T> ExecuteSelect<T>(
             string sql,
             Func<NpgsqlDataReader, T> rowMapping,
             IDictionary<string, object> parameters = null
@@ -94,7 +94,7 @@ namespace AIS_Theatre.DAL
             return ExecuteSingleRowSelect(sql, DefaultRowMapping, sqlParameters);
         }
 
-        protected IList<TEntity> ExecuteSelect(string sql, SqlParameters sqlParameters = null)
+        protected List<TEntity> ExecuteSelect(string sql, SqlParameters sqlParameters = null)
         {
             return ExecuteSelect(sql, DefaultRowMapping, sqlParameters);
         }

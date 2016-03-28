@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using AIS_Theatre.Data;
+using Npgsql;
 using System;
 using System.Configuration;
 using System.Collections.Generic;
@@ -19,16 +20,19 @@ namespace AIS_Theatre.DAL
         private ICompositionRepository _compositionRepository;
         private IEmployeeInPerformanceRepository _employeeInPerformanceRepository;
         private IEmployeeRepository _employeeRepository;
+        private IEmployeePositionRepository _employeePositionRepository;
+        private IGenreRepository _genreRepository;
         private IMusicianInPerformanceRepository _musicianInPerformanceRepository;
         private IMusicianRepository _musicianRepository;
         private IPerformanceRepository _performanceRepository;
+        private ISeasonRepository _seasonRepository;
         private ISettingRepository _settingRepository;
         private ISubscriptionRepository _subscriptionRepository;
         private ITicketRepository _ticketRepository;
         
         public UnitOfWork()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+            var connectionString = ConnectionStringBuilder.getConnectionString("PostgreSQL");
             _connection = new NpgsqlConnection(connectionString);
             _connection.Open();
             _transaction = _connection.BeginTransaction(/*IsolationLevel.ReadCommitted*/);
@@ -43,6 +47,7 @@ namespace AIS_Theatre.DAL
                 return _actorInPerformanceRepository;
             }
         }
+
         public IActorRepository ActorRepository
         {
             get
@@ -52,6 +57,7 @@ namespace AIS_Theatre.DAL
                 return _actorRepository;
             }
         }
+
         public IAuthorRepository AuthorRepository
         {
             get
@@ -61,6 +67,7 @@ namespace AIS_Theatre.DAL
                 return _authorRepository;
             }
         }
+
         public ICompositionRepository CompositionRepository
         {
             get
@@ -70,6 +77,7 @@ namespace AIS_Theatre.DAL
                 return _compositionRepository;
             }
         }
+
         public IEmployeeInPerformanceRepository EmployeeInPerformanceRepository
         {
             get
@@ -79,6 +87,7 @@ namespace AIS_Theatre.DAL
                 return _employeeInPerformanceRepository;
             }
         }
+
         public IEmployeeRepository EmployeeRepository
         {
             get
@@ -88,6 +97,27 @@ namespace AIS_Theatre.DAL
                 return _employeeRepository;
             }
         }
+
+        public IEmployeePositionRepository EmployeePositionRepository
+        {
+            get
+            {
+                if (_employeePositionRepository == null)
+                    _employeePositionRepository = new EmployeePositionRepository(_connection, _transaction);
+                return _employeePositionRepository;
+            }
+        }
+
+        public IGenreRepository GenreRepository
+        {
+            get
+            {
+                if (_genreRepository == null)
+                    _genreRepository = new GenreRepository(_connection, _transaction);
+                return _genreRepository;
+            }
+        }
+        
         public IMusicianInPerformanceRepository MusicianInPerformanceRepository
         {
             get
@@ -97,6 +127,7 @@ namespace AIS_Theatre.DAL
                 return _musicianInPerformanceRepository;
             }
         }
+        
         public IMusicianRepository MusicianRepository
         {
             get
@@ -106,6 +137,7 @@ namespace AIS_Theatre.DAL
                 return _musicianRepository;
             }
         }
+        
         public IPerformanceRepository PerformanceRepository
         {
             get
@@ -115,6 +147,17 @@ namespace AIS_Theatre.DAL
                 return _performanceRepository;
             }
         }
+
+        public ISeasonRepository SeasonRepository
+        {
+            get
+            {
+                if (_seasonRepository == null)
+                    _seasonRepository = new SeasonRepository(_connection, _transaction);
+                return _seasonRepository;
+            }
+        }
+
         public ISettingRepository SettingRepository
         {
             get
@@ -124,6 +167,7 @@ namespace AIS_Theatre.DAL
                 return _settingRepository;
             }
         }
+
         public ISubscriptionRepository SubscriptionRepository
         {
             get
@@ -133,6 +177,7 @@ namespace AIS_Theatre.DAL
                 return _subscriptionRepository;
             }
         }
+
         public ITicketRepository TicketRepository
         {
             get

@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace AIS_Theatre.DAL
 {
-    internal class GenreRepository : BaseRepository<Guid, Genre>, IGenreRepository
+    internal class EmployeePositionRepository : BaseRepository<Guid, EmployeePosition>, IEmployeePositionRepository
     {
-        public GenreRepository(NpgsqlConnection connection, NpgsqlTransaction transaction) : base(connection, transaction) { }
+        public EmployeePositionRepository(NpgsqlConnection connection, NpgsqlTransaction transaction) : base(connection, transaction) { }
 
-        public override Guid Insert(Genre entity)
+        public override Guid Insert(EmployeePosition entity)
         {
             return (Guid)
                 base.ExecuteScalar<Guid>(
-                        "insert into genre (id_genre, name_genre) values (@Id, @Name) SELECT SCOPE_IDENTITY()",
+                        "insert into employee_position (id_employee_position, name_employee_position) values (@Id, @CName) SELECT SCOPE_IDENTITY()",
                         new SqlParameters
                         {
                             {"Id", entity.Id.ToString()},
@@ -26,10 +26,10 @@ namespace AIS_Theatre.DAL
 
         }
 
-        public override bool Update(Genre entity)
+        public override bool Update(EmployeePosition entity)
         {
             var res = base.ExecuteNonQuery(
-                    "update genre set name_genre = @Name  where id_genre = @Id ",
+                    "update employee_position set name_employee_position = @Name  where id_employee_position = @Id ",
                     new SqlParameters
                     {
                         {"Id", entity.Id.ToString()},
@@ -39,22 +39,22 @@ namespace AIS_Theatre.DAL
 
             return res > 0;
         }
-        
-        public Genre GetById(Guid id)
+
+        public EmployeePosition GetById(Guid id)
         {
             return base.ExecuteSingleRowSelect(
-                    "select * from genre where id_genre = @Id",
+                    "select * from employee_position where id_employee_position = @Id",
                     new SqlParameters()
                     {
                         {"Id", id.ToString()}
                     }
                 );
         }
-        
+
         public bool Delete(Guid id)
         {
             var res = base.ExecuteNonQuery(
-                "delete from genre where id_genre = @Id",
+                "delete from employee_position where id_employee_position = @Id",
                 new SqlParameters()
                 {
                     { "Id", id.ToString() }
@@ -66,14 +66,14 @@ namespace AIS_Theatre.DAL
             return res == 1;
         }
 
-        public List<Genre> GetAll()
+        public List<EmployeePosition> GetAll()
         {
-            return base.ExecuteSelect("Select * from genre");
+            return base.ExecuteSelect("select * from employee_position");
         }
 
-        protected override Genre DefaultRowMapping(NpgsqlDataReader reader)
+        protected override EmployeePosition DefaultRowMapping(NpgsqlDataReader reader)
         {
-            return new Genre(Guid.Parse((string)reader["id_genre"]), (string)reader["name_genre"]);
+            return new EmployeePosition(Guid.Parse((string)reader["id_employee_position"]), (string)reader["name_employee_position"]);
         }
     }
 }
