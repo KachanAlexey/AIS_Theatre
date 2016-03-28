@@ -9,6 +9,6 @@ namespace AIS_Theatre.DAL
 {
     public interface ISubscriptionRepository : IBaseRepository<Guid, Subscription>
     {
-        IList<Subscription> GetBySeason(Season season);
+        List<Subscription> GetBySeason(Season season);
     }
 }

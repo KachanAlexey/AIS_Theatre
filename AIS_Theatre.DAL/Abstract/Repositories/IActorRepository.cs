@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace AIS_Theatre.DAL
 {
-    public interface IActorRepository : IWorkerRepository
+    public interface IActorRepository : IBaseRepository<Guid, Actor>
     {
-        IList<Actor> GetByFeatures(ActorsFeatures features);
+        List<Actor> GetByFeatures(ActorsFeatures features);
+        List<Actor> GetByBirthDate(string birthDate);
+        List<Actor> GetBySalary(int salary);
+        List<Actor> GetByExperience(string experience);
+        List<Actor> GetActorsOfPerformance(Performance performance);
     }
 }

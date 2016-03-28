@@ -9,8 +9,8 @@ namespace AIS_Theatre.DAL
 {
     public interface ISettingRepository : IBaseRepository<Guid, Setting>
     {
-        IList<Setting> GetByName(string name);
-        IList<Setting> GetByPremiereDate(string date);
-        IList<Setting> GetByComposition(Composition composition);
+        List<Setting> GetByName(string name);
+        List<Setting> GetByPremiereDate(string date);
+        List<Setting> GetByComposition(Composition composition);
     }
 }

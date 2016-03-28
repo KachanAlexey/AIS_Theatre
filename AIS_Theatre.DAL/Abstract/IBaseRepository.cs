@@ -11,13 +11,10 @@ namespace AIS_Theatre.DAL
     {
         TKey Insert(TEntity entity);
         bool Update(TEntity entity);
-        int Upsert(TEntity entity);
-
-        int GetCount();
-
+        
         TEntity GetById(TKey id);
         bool Delete(TKey id);
 
-        IList<TEntity> GetAll();
+        List<TEntity> GetAll();
     }
 }

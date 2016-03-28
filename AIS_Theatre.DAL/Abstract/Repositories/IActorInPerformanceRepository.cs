@@ -9,7 +9,5 @@ namespace AIS_Theatre.DAL
 {
     public interface IActorInPerformanceRepository : IBaseRepository<Guid, ActorInPerformance>
     {
-        IList<Performance> GetPerformancesOfActor(Actor actor);
-        IList<Actor> GetActorsOfPerformance(Performance performance);
     }
 }

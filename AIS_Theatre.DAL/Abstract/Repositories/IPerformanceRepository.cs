@@ -9,8 +9,11 @@ namespace AIS_Theatre.DAL
 {
     public interface IPerformanceRepository : IBaseRepository<Guid, Performance>
     {
-        IList<Performance> GetByDate(string date);
-        IList<Performance> GetByTime(string time);
-        IList<Performance> GetBySetting(Setting setting);
+        List<Performance> GetByDate(string date);
+        List<Performance> GetByTime(string time);
+        List<Performance> GetBySetting(Setting setting);
+        List<Performance> GetPerformancesOfActor(Actor actor);
+        List<Performance> GetPerformancesOfMusician(Musician musician);
+        List<Performance> GetPerformancesOfEmployee(Employee employee);
     }
 }

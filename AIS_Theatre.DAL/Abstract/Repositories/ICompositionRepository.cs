@@ -9,9 +9,9 @@ namespace AIS_Theatre.DAL
 {
     public interface ICompositionRepository : IBaseRepository<Guid, Composition>
     {
-        IList<Composition> GetByGenre(Genre genre);
-        IList<Composition> GetByAuthor(Author author);
-        IList<Composition> GetByYear(string year);
-        IList<Composition> GetByName(string name);
+        List<Composition> GetByGenre(Genre genre);
+        List<Composition> GetByAuthor(Author author);
+        List<Composition> GetByYear(string year);
+        List<Composition> GetByName(string name);
     }
 }

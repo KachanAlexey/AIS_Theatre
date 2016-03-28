@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AIS_Theatre.DAL
 {
-    public interface IEmployeeInPerformanceRepository : IBaseRepository<Guid, EmployeeInPerformance>
+    public interface IGenreRepository : IBaseRepository<Guid, Genre>
     {
     }
 }

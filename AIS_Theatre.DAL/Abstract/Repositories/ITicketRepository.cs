@@ -9,13 +9,13 @@ namespace AIS_Theatre.DAL
 {
     public interface ITicketRepository : IBaseRepository<Guid, Ticket>
     {
-        IList<Ticket> GetByPerformance(Performance performance);
-        IList<Ticket> GetBySubscription(Subscription subscription);
-        IList<Ticket> GetFree();
-        IList<Ticket> GetFreeByPerformance(Performance performance);
-        IList<Ticket> GetByPrice(int price);
-        IList<Ticket> GetByPlaceAndRow(int place, string row);
-        IList<Ticket> GetByPlace(int place);
-        IList<Ticket> GetByRow(string row);
+        List<Ticket> GetByPerformance(Performance performance);
+        List<Ticket> GetBySubscription(Subscription subscription);
+        List<Ticket> GetFree();
+        List<Ticket> GetFreeByPerformance(Performance performance);
+        List<Ticket> GetByPrice(int price);
+        List<Ticket> GetByPlaceAndRow(int place, string row);
+        List<Ticket> GetByPlace(int place);
+        List<Ticket> GetByRow(string row);
     }
 }
