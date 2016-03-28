@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIS_Theatre.Data", "AIS_The
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIS_Theatre.DAL", "AIS_Theatre.DAL\AIS_Theatre.DAL.csproj", "{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIS_Theatre.ConsoleUI", "AIS_Theatre.ConsoleUI\AIS_Theatre.ConsoleUI.csproj", "{F8169085-6DEA-4FB7-AC6E-E809BC1A7B50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB9F0EC-8BA8-40A9-B19F-B87C36D97D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8169085-6DEA-4FB7-AC6E-E809BC1A7B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8169085-6DEA-4FB7-AC6E-E809BC1A7B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8169085-6DEA-4FB7-AC6E-E809BC1A7B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8169085-6DEA-4FB7-AC6E-E809BC1A7B50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
