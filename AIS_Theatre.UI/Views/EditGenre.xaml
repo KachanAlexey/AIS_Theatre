@@ -1,0 +1,17 @@
+﻿<Window x:Class="AIS_Theatre.UI.Views.EditGenre"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModels="clr-namespace:AIS_Theatre.UI.ViewModels"
+        xmlns:view="clr-namespace:AIS_Theatre.UI.Views"
+        Title="CreateGenre" Height="106" Width="300">
+    <Window.DataContext>
+        <viewModels:EditGenreVM/>
+    </Window.DataContext>
+    <Grid>
+        <Button x:Name="btn_save" Content="Save" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="50" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=Window}"/>
+        <Button x:Name="btn_cancel" Content="Cancel" HorizontalAlignment="Left" Margin="65,41,0,0" VerticalAlignment="Top" Width="50" IsCancel="True"/>
+        <Label x:Name="lbl_genre" Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_genre" Text="{Binding Name,ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="59,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
+
+    </Grid>
+</Window>
