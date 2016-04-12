@@ -9,9 +9,10 @@ namespace AIS_Theatre.DAL
 {
     public interface IBaseRepository<TKey, TEntity> where TEntity : BaseEntity<TKey>
     {
-        TKey Insert(TEntity entity);
+        int Insert(TEntity entity);
         bool Update(TEntity entity);
-        
+        int Upsert(TEntity entity);
+
         TEntity GetById(TKey id);
         bool Delete(TKey id);
 

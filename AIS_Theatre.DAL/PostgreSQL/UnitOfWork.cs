@@ -13,7 +13,7 @@ namespace AIS_Theatre.DAL
     {
         private readonly NpgsqlTransaction _transaction;
         private readonly NpgsqlConnection _connection;
-
+        /*
         private IActorInPerformanceRepository _actorInPerformanceRepository;
         private IActorRepository _actorRepository;
         private IAuthorRepository _authorRepository;
@@ -21,14 +21,14 @@ namespace AIS_Theatre.DAL
         private IEmployeeInPerformanceRepository _employeeInPerformanceRepository;
         private IEmployeeRepository _employeeRepository;
         private IEmployeePositionRepository _employeePositionRepository;
-        private IGenreRepository _genreRepository;
+        */private IGenreRepository _genreRepository;/*
         private IMusicianInPerformanceRepository _musicianInPerformanceRepository;
         private IMusicianRepository _musicianRepository;
         private IPerformanceRepository _performanceRepository;
         private ISeasonRepository _seasonRepository;
         private ISettingRepository _settingRepository;
         private ISubscriptionRepository _subscriptionRepository;
-        private ITicketRepository _ticketRepository;
+        private ITicketRepository _ticketRepository;*/
         
         public UnitOfWork()
         {
@@ -37,7 +37,7 @@ namespace AIS_Theatre.DAL
             _connection.Open();
             _transaction = _connection.BeginTransaction(/*IsolationLevel.ReadCommitted*/);
         }
-
+        /*
         public IActorInPerformanceRepository ActorInPerformanceRepository
         {
             get
@@ -106,7 +106,7 @@ namespace AIS_Theatre.DAL
                     _employeePositionRepository = new EmployeePositionRepository(_connection, _transaction);
                 return _employeePositionRepository;
             }
-        }
+        }*/
 
         public IGenreRepository GenreRepository
         {
@@ -116,7 +116,7 @@ namespace AIS_Theatre.DAL
                     _genreRepository = new GenreRepository(_connection, _transaction);
                 return _genreRepository;
             }
-        }
+        }/*
         
         public IMusicianInPerformanceRepository MusicianInPerformanceRepository
         {
@@ -186,7 +186,7 @@ namespace AIS_Theatre.DAL
                     _ticketRepository = new TicketRepository(_connection, _transaction);
                 return _ticketRepository;
             }
-        }
+        }*/
 
         public void Dispose()
         {
@@ -199,7 +199,6 @@ namespace AIS_Theatre.DAL
                 _connection.Dispose();
             }
         }
-
 
         public void Commit()
         {

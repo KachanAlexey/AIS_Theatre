@@ -12,11 +12,11 @@ namespace AIS_Theatre.DAL
     {
         public GenreRepository(NpgsqlConnection connection, NpgsqlTransaction transaction) : base(connection, transaction) { }
 
-        public override Guid Insert(Genre entity)
+        public override int Insert(Genre entity)
         {
-            return (Guid)
-                base.ExecuteScalar<Guid>(
-                        "insert into genre (id_genre, name_genre) values (@Id, @Name) SELECT SCOPE_IDENTITY()",
+            return (int)
+                base.ExecuteNonQuery(
+                        "insert into genre (id_genre, name_genre) values (@Id, @Name)",
                         new SqlParameters
                         {
                             {"Id", entity.Id.ToString()},
@@ -68,7 +68,7 @@ namespace AIS_Theatre.DAL
 
         public List<Genre> GetAll()
         {
-            return base.ExecuteSelect("Select * from genre");
+            return base.ExecuteSelect("select * from genre");
         }
 
         protected override Genre DefaultRowMapping(NpgsqlDataReader reader)

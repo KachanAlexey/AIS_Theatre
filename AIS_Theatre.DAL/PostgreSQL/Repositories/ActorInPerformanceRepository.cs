@@ -12,7 +12,7 @@ namespace AIS_Theatre.DAL
     {
         public ActorInPerformanceRepository(NpgsqlConnection connection, NpgsqlTransaction transaction) : base(connection, transaction) { }
 
-        public override Guid Insert(ActorInPerformance entity)
+        public override int Insert(ActorInPerformance entity)
         {
             return (Guid)
                 base.ExecuteScalar<Guid>(

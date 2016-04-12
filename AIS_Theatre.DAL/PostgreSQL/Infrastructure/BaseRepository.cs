@@ -109,20 +109,21 @@ namespace AIS_Theatre.DAL
         }
 
 
-        public TKey Upsert(TEntity entity)
+        public int Upsert(TEntity entity)
         {
             if (Object.Equals(entity.Id, default(TKey)))
                 return Insert(entity);
             else
-            {
+            {/*
                 if (Update(entity))
                     return entity.Id;
                 else
-                    return default(TKey);
+                    return default(int);*/
             }
+            return default(int);
         }
 
-        public abstract TKey Insert(TEntity entity);
+        public abstract int Insert(TEntity entity);
         public abstract bool Update(TEntity entity);
         protected abstract TEntity DefaultRowMapping(NpgsqlDataReader reader);
 
