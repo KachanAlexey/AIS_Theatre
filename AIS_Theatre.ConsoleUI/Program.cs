@@ -12,45 +12,26 @@ namespace AIS_Theatre.ConsoleUI
     {
         static void Main(string[] args)
         {
-            PrintListOfEntities();
-            Console.Write("Enter the index of entity: ");
-            int indexEntity = Convert.ToInt32(Console.ReadLine());
-            switch(indexEntity)
+            while (true)
             {
-                case 1:
-                    PrintAuthorsFunctions();
-                    break;
-                case 2:
-                    PrintGenresFunctions();
-                    break;
-                default:
-                    Console.WriteLine("Oops! Please, it looks like thare isn't such index.");
-                    break;
-            }
-            Console.Write("Enter the index of action: ");
-            int indexAction = Convert.ToInt32(Console.ReadLine());
-            switch (indexEntity)
-            {
-                case 1:
-                    RunAuthorsActions(indexAction);
-                    break;
-                case 2:
-                    
-                    break;
-                default:
-                    Console.WriteLine("Oops! Please, it looks like there is no entity with such index.");
-                    break;
-            }
-            Console.ReadKey();
-        }
+                UnitOfWorkFactory.__Initialize(() => new UnitOfWork());
+                PrintGenresFunctions();
+                Console.Write("Enter the index of action: ");
+                try
+                {
+                    int indexAction = Convert.ToInt32(Console.ReadLine());
 
-        private static void PrintListOfEntities()
-        {
-            Console.WriteLine("Choose the entity to work with form the list below by entering the index number");
-            Console.WriteLine("Entities:");
-            Console.WriteLine("1. Author");
-            Console.WriteLine("2. Genre");
+                    Console.WriteLine();
+                    RunGenresActions(indexAction);
+                    Console.WriteLine();
+                }
+                catch (Exception)
+                {
+                    Environment.Exit(0);
+                }
+            }
         }
+        
 
         private static void PrintListOfGeneralFunctions()
         {
@@ -61,44 +42,92 @@ namespace AIS_Theatre.ConsoleUI
             Console.WriteLine("3. Update");
             Console.WriteLine("4. Delete");
         }
-
-        private static void PrintAuthorsFunctions()
-        {
-            PrintListOfGeneralFunctions();
-            Console.WriteLine("5. Get by Genre");
-            Console.WriteLine("6. Get by Country");
-        }
-
+        
         private static void PrintGenresFunctions()
         {
             PrintListOfGeneralFunctions();
         }
 
-        private static void RunAuthorsActions(int index)
+        private static void RunGenresActions(int index)
         {
-            switch(index)
+            var uof = UnitOfWorkFactory.CreateInstance();
+            List<Genre> genres = new List<Genre>();
+            switch (index)
             {
                 case 1:
                     {
-                        var unitOfWork = UnitOfWorkFactory.CreateInstance();
-                        List<Author> authors = unitOfWork.AuthorRepository.GetAll();
-                        unitOfWork.Commit();
-                        foreach (Author author in authors)
+                        genres = uof.GenreRepository.GetAll();
+                        uof.Commit();
+                        foreach (Genre genre in genres)
                         {
-                            Console.WriteLine(author.ToString());
+                            Console.WriteLine(genre.ToString());
                         }
                      }
-                       
                     break;
                 case 2:
+                    {
+                        Console.Write("Enter the name of genre: ");
+                        string name = Console.ReadLine();
+                        try
+                        {
+                            uof.GenreRepository.Insert(new Genre(name));
+                            uof.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Something gone wrong!");
+                            Console.WriteLine(ex.Message.ToString());
+                        }
+                    }
                     break;
                 case 3:
+                    Console.Write("Enter the name of genre you want to change: ");
+                    string nameOld = Console.ReadLine();
+                    Console.Write("Enter the new name of genre: ");
+                    string nameNew = Console.ReadLine();
+                    genres = uof.GenreRepository.GetAll();
+                    Genre genreToUpdate = new Genre(nameOld);
+                    foreach (Genre genre in genres)
+                    {
+                        if (genre.Name == genreToUpdate.Name)
+                        {
+                            genreToUpdate = genre.Clone();
+                        }
+                    }
+                    genreToUpdate.Name = nameNew;
+                    try
+                    {
+                        uof.GenreRepository.Update(genreToUpdate);
+                        uof.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Something gone worng!");
+                        Console.WriteLine(ex.Message.ToString());
+                    }
                     break;
                 case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
+                    Console.Write("Enter the name of genre you want to delete: ");
+                    string nameToDelete = Console.ReadLine();
+                    genres = uof.GenreRepository.GetAll();
+                    Genre genreToDelete = new Genre(nameToDelete);
+                    foreach (Genre genre in genres)
+                    {
+                        if (genre.Name == genreToDelete.Name)
+                        {
+                            genreToDelete = genre;
+                        }
+                    }
+                    try
+                    {
+                        uof.GenreRepository.Delete(genreToDelete.Id);
+                        uof.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Something gone wrong!");
+                        Console.WriteLine(ex.Message.ToString());
+                    }
                     break;
                 default:
                     Console.WriteLine("Oops! Please, it looks like there is no action with such index.");
