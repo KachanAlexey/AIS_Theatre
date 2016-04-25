@@ -41,10 +41,6 @@
       <HintPath>..\packages\Antlr2.Runtime.2.7.7.02\lib\antlr.runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AsyncBridge, Version=0.1.1.0, Culture=neutral, PublicKeyToken=37dbcba04d38308f, processorArchitecture=MSIL">
-      <HintPath>..\packages\AsyncBridge.JetBrains.0.1.1.0\lib\net40-Client\AsyncBridge.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
       <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
       <Private>True</Private>
@@ -175,10 +171,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\EditGenre.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -195,11 +187,7 @@
     <Compile Include="Extensions\This.cs" />
     <Compile Include="Extensions\TrickyBinding.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
-    <Compile Include="ViewModels\EditGenreVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
-    <Compile Include="Views\EditGenre.xaml.cs">
-      <DependentUpon>EditGenre.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

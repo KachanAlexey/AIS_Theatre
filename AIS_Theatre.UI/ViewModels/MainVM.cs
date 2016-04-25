@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using JetBrains.Annotations;
 using AIS_Theatre.DAL;
 using AIS_Theatre.Data;
 using AIS_Theatre.UI.Debug;
@@ -99,16 +100,6 @@ namespace AIS_Theatre.UI.ViewModels
             get { return RelayCommand.CreateVoid(RefreshList); }
         }
 
-        public ICommand EditGenreCommand
-        {
-            get { return RelayCommand.CreateVoid(EditGenre); }
-        }
-
-        public ICommand AddGenreCommand
-        {
-            get { return RelayCommand.CreateVoid(AddGenre); }
-        }
-
         private void RefreshList()
         {
             new Thread(() =>
@@ -128,30 +119,13 @@ namespace AIS_Theatre.UI.ViewModels
             }).Start();
         }
 
-        public void EditGenre()
-        {
-            if (CurrentGenre != null)
-            {
-                var result = new EditGenre() { DataContext = new EditGenreVM(CurrentGenre) }.ShowDialog();
-                if (result == true)
-                    RefreshList();
-            }
-        }
-
-        public void AddGenre()
-        {/*
-            var result = new CreateGenre().ShowDialog();
-            if (result == true)
-                RefreshList();*/
-        }
-
-
         #endregion
 
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
+        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;

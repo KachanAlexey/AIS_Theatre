@@ -2,18 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:AIS_Theatre.UI.ViewModels"
-        xmlns:view="clr-namespace:AIS_Theatre.UI.Views"
+        xmlns:view="assembly=AIS_Theatre.Data"
         Title="MainWindow" Height="350" Width="525" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewModels:MainVM/>
     </Window.DataContext>
     <Grid>
-        <DataGrid x:Name="dataGrid" ItemsSource="{Binding AllGenres}" Margin="15,15,79,10" ColumnWidth="*" IsReadOnly="True" />
-        <GroupBox x:Name="groupBox" Header="Tools" HorizontalAlignment="Right" Margin="0,15,10,0" VerticalAlignment="Top" Height="119" Width="64">
-            <Grid>
-                <Button x:Name="btn_add"  Command="{Binding AddGenreCommand}" Width="40" Margin="7,10,5,47" Content="Add"/>
-                <Button x:Name="btn_edit" Command="{Binding EditGenreCommand}" Width="40" Margin="7,55,5,2" Content="Edit"/>
-            </Grid>
-        </GroupBox>
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding AllGenres}" SelectedItem="{Binding CurrentSelection}" ColumnWidth="*" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
     </Grid>
 </Window>
