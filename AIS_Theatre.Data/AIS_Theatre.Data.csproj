@@ -177,6 +177,7 @@
     <Compile Include="Entities\Database\Subscription.cs" />
     <Compile Include="Entities\Auxilary\Worker.cs" />
     <Compile Include="Entities\Database\Ticket.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
