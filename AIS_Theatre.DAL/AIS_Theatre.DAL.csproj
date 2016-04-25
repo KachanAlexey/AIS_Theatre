@@ -179,6 +179,7 @@
     <Compile Include="Abstract\Repositories\IEmployeePositionRepository.cs" />
     <Compile Include="Abstract\Repositories\IGenreRepository.cs" />
     <Compile Include="Abstract\Repositories\ISeasonRepository.cs" />
+    <Compile Include="Abstract\Repositories\IUserRepository.cs" />
     <Compile Include="Manager\ConnectionStringBuilder.cs" />
     <Compile Include="Manager\PostgreSQLConnectionStringBuilder.cs" />
     <Compile Include="PostgreSQL\Repositories\GenreRepository.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Abstract\UnitOfWorkFactory.cs" />
     <Compile Include="PostgreSQL\Infrastructure\SqlParameters.cs" />
     <Compile Include="PostgreSQL\UnitOfWork.cs" />
+    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AIS_Theatre.Data\AIS_Theatre.Data.csproj">
