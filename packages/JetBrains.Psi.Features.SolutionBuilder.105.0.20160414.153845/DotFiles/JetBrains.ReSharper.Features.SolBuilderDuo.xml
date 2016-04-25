@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.ReSharper.Features.SolBuilderDuo</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceCache">
+            <summary>
+            A list of <see cref="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash"/> and <see cref="!:ProjectBuildSignature"/> objects for storing during the build and between sessions.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceCache.GetAssemblySurfaceHash(JetBrains.Util.FileSystemPath)">
+            <summary>
+            Looks up an existing hash by assembly path, if it's available and still valid, or computes a new one.
+            Does not throw if missing. The caller does not need to know if it were missing or not.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash">
+            <summary>
+            Holds a hash of the assembly's public API surface.
+            Whenever there is a breaking change in the surface, all of the projects referencing this assembly must be rebuilt.
+            The equality is not strict, it checks assembly name, version, and surface hash only (modification time is ignored).
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.OptionDumpSignature">
+            <summary>
+            Whether to dump the XML Signature file to disk. Debug option.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.#ctor(JetBrains.Util.FileSystemPath)">
+            <summary>
+            Captures the signature from the file.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.#ctor">
+            <summary>
+            Default ctor, used for serialization.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.StrictEqualityComparer">
+            <summary>
+            Compares for equality using all the fields, which includes modification time.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.IsUpToDate">
+            <summary>
+            Checks if this signature is still up-to-date for its file (only timestamp is considered).
+            If not, you should create a new one with the ctor.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.ComputeHash_Stream(JetBrains.Util.FileSystemPath)">
+            <summary>
+            New impl. Streams the XML Signature producer into the hashing stream consumer. Uses much less memory and has better perf.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.EqualsStrict(JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash,JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash)">
+            <summary>
+            Includes modification time also.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.GetHashCodeStrict(JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash)">
+            <summary>
+            Includes modification time also.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />.
+            </summary>
+            <returns>
+            true if the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />; otherwise, false.
+            </returns>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with the current <see cref="T:System.Object" />. </param>
+            <exception cref="T:System.NullReferenceException">The <paramref name="obj" /> parameter is null.</exception><filterpriority>2</filterpriority>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type. 
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object" />.
+            </returns>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.Equals(JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <returns>
+            true if the current object is equal to the <paramref name="obj" /> parameter; otherwise, false.
+            </returns>
+            <param name="obj">An object to compare with this object.</param>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.AssemblyName">
+            <summary>
+            The serialized form of the <see cref="T:System.Reflection.AssemblyName"/>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.FullPath">
+            <summary>
+            Full path to the assembly. This is the key.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.ModificationTime">
+            <summary>
+            Modification time of the a
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceHash.PublicApiHash">
+            <summary>
+            The public API surface of the assembly, compacted with a hash.
+            </summary>
+        </member>
+        <member name="T:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceSerializerOnTheFly">
+            <summary>
+            Takes an assembly and serializes its public API surface into an XML Document.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceSerializerOnTheFly.Run(JetBrains.Metadata.Reader.API.IMetadataAssembly,System.IO.Stream)">
+            <summary>
+            Takes an assembly and serializes its public API surface into an XML Document.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Legacy.AssemblySurfaceSerializerOnTheFly.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Services.IIncrementalRunnerProjectChecker.CanBuild(JetBrains.ProjectModel.IProject)">
+            <summary>
+            When returns false it means that whole solution should be built using 
+            </summary>
+            <param name="project"></param>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Services.IncrementalRunnerApplicabilityChecker.ApplicabilityState">
+            <summary>
+            the builder can work for whole current solution.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.GraphStateCommands.HandleBuildEventCommand.IsBuilding">
+            <summary>
+            True - when we Build or Rebuild. false when Clean.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.None">
+            <summary>
+            No information about previous build.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.HasRunningParent">
+            <summary>
+            One of project parents are being built now.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Skipped">
+            <summary>
+            Project should be built because of file changes or heuristics.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Running">
+            <summary>
+            Project is being built now.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.SuccessfulWithoutWarnings">
+            <summary>
+            Project was succesfully built without errors and warnings.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.SuccessfulWithWarnings">
+            <summary>
+            Project was built without errors but with warnings.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Failed">
+            <summary>
+            Project building failed with errors.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectBuildingState.Cleaned">
+            <summary>
+            Project was cleaned.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.None">
+            <summary>
+            No information. Equals to Dirty. Should be built.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.White">
+            <summary>
+            Clean. Project doesn't have any changes and doesn't have dirty parent. Should not be built.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.Black">
+            <summary>
+            Dirty. Project has changes. Should be built.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.Gray">
+            <summary>
+            Project doesn't have any changes, but has at least one parent(it's not necessarily - parent is direct or not) should be built. Decision(to build or not to build) will be made after building parents.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.GrayToSkip">
+            <summary>
+            Project had state Gray before, but after building parents we decide to SKIP building because of heuristics.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.GrayToBuild">
+            <summary>
+            Project had state Gray before, but after building parents we decide to BUILD building because of heuristics.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.NeverBuild">
+            <summary>
+            Project had state Gray, but this project marked as "NeverBuild".
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.AlwaysBuild">
+            <summary>
+            Project had state Gray, but this project marked as "AlwaysBuild".
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.OnlyInderectReferencesChanged">
+            <summary>
+            Project was White but some of inderect references were changed.
+            Analyzing surface could affect only first-level dependencies.
+            This state could be used for executing
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectChangingState.BuildIsDisabled">
+            <summary>
+            Build is disabled in current solution configuration+platform.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectForBuildingChooseResult.NotBuiltProjectPossibleRemained">
+            <summary>
+            We possible have still not built projects, but we can't build them now(because their parent are being built now).
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectForBuildingChooseResult.FailedProjectExists">
+            <summary>
+            We have at least one failed project.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectForBuildingChooseResult.Projects">
+            <summary>
+            Projects could be built now. We could even built them in parallel. They don't reference each other.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectInBuildEvent.IsMajorProject">
+            <summary>
+            For similar situations it always True.
+            It would be False when we get event e.g. from referenced projects or if we build WPF project then msbuild generate fake projects.
+            We should receive errors from "minor" projects to provide them to user. But events from theese projects should not change state of "major" project.
+            </summary>
+        </member>
+        <member name="F:JetBrains.ReSharper.Features.SolBuilderDuo.Model.SolutionBuilderNextSettings.MsbuildVersion">
+            <summary>
+            Version of MSBuild to use when building.
+            <c>0</c> means "as the runtime version of the application initiating the build" (in case of Visual Studio, this is the same MSBuild VS itself uses for building).
+            <see cref="F:System.Int32.MaxValue"/> means use the highest version available on this machine.
+            Any other number: <see cref="M:JetBrains.Interop.WinApi.Macros.HIWORD(System.UInt32)"/> is the major version number, <see cref="M:JetBrains.Interop.WinApi.Macros.LOWORD(System.UInt32)"/> is the minor version number.
+            </summary>
+        </member>
+        <member name="M:JetBrains.ReSharper.Features.SolBuilderDuo.Services.ChangingTracking.Inputs.ProjectChangeTracker.CanProcessChange(System.Collections.Generic.IList{JetBrains.DocumentModel.IDocument},JetBrains.DocumentModel.IDocument)">
+            <summary>
+            If make change in shared documents, then after saving we receive document changes from same document but from other projects.
+            This method is a shame, but it's the only way to skip useless received changes. Sorry.
+            </summary>
+            <param name="sharedDocuments"></param>
+            <param name="document"></param>
+            <returns></returns>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ISolutionDirtyState.SolutionChanged">
+            <summary>
+            If sln file was changed.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ISolutionDirtyState.ChangedProjects">
+            <summary>
+            List of projects, where project file has been changed. e.g. added files or changed reference array.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ISolutionDirtyState.DirtyProjects">
+            <summary>
+            Projects, which have changing in their inputs. e.g changing in file with code.
+            </summary>
+        </member>
+        <member name="P:JetBrains.ReSharper.Features.SolBuilderDuo.Model.ProjectState.IncludedBySelection">
+            <summary>
+            If user build selected project/projects, than some projects could be skipped for building.
+            If use build all, all projects have IncludedBySelection = true.
+            default == true
+            </summary>
+        </member>
+    </members>
+</doc>

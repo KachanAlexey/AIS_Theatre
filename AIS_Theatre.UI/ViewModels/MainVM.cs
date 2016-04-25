@@ -128,7 +128,7 @@ namespace AIS_Theatre.UI.ViewModels
             }).Start();
         }
 
-        private void EditGenre()
+        public void EditGenre()
         {
             if (CurrentGenre != null)
             {
@@ -138,7 +138,7 @@ namespace AIS_Theatre.UI.ViewModels
             }
         }
 
-        private void AddGenre()
+        public void AddGenre()
         {/*
             var result = new CreateGenre().ShowDialog();
             if (result == true)

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.VisualStudio.JustVs15</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Platform.VisualStudio.JustVs15.ProjectModel.VisualC.CopyPastedAdapters.VCAdaptersJustVsXx">
+            <summary>
+            This is the entry point — a component implementation which wires up all of the cloned interface implementations.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.JustVs15.Shell.Hacks.SuppressOwnerlessFloatingWindowsJustVs15">
+            <summary>
+              See base comment.
+              Uses the vs-version-specific DLL copy.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.JustVs15.Shell.Zones.IJustVs15Zone">
+            <summary>
+            Visual Studio integrated products, VS 15.0 only.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Platform.VisualStudio.JustVs15.TextControl.VsTextControlDevTenIncrementalSearchClientJustVs15">
+            <summary>
+              VS12-specific client (NOTE: in VS11+ the <see cref="T:Microsoft.VisualStudio.Text.IncrementalSearch.IIncrementalSearch"/> implementation is present, but is not active).
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -11,8 +11,8 @@
         <DataGrid x:Name="dataGrid" ItemsSource="{Binding AllGenres}" Margin="15,15,79,10" ColumnWidth="*" IsReadOnly="True" />
         <GroupBox x:Name="groupBox" Header="Tools" HorizontalAlignment="Right" Margin="0,15,10,0" VerticalAlignment="Top" Height="119" Width="64">
             <Grid>
-                <Button x:Name="btn_add"  Command="{Binding AddGenreCommand, Mode=OneTime}" Width="40" Margin="7,10,5,47" Content="Add"/>
-                <Button x:Name="btn_edit"  Command="{Binding EditGenreCommand, Mode=OneTime}" Width="40" Margin="7,55,5,2" Content="Edit"/>
+                <Button x:Name="btn_add"  Command="{Binding AddGenreCommand}" Width="40" Margin="7,10,5,47" Content="Add"/>
+                <Button x:Name="btn_edit" Command="{Binding EditGenreCommand}" Width="40" Margin="7,55,5,2" Content="Edit"/>
             </Grid>
         </GroupBox>
     </Grid>

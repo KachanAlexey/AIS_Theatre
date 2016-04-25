@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Platform.MsBuildRunner</name>
+    </assembly>
+    <members>
+        <member name="P:JetBrains.MsBuildRunner.Protocol.TransmittingData.Common.IInitRequest.TimeoutForFinishProjectEvents">
+            <summary>
+            How many seconds we'll wait receiving all ProjectFinishedEvents.
+            </summary>
+        </member>
+        <member name="T:JetBrains.MsBuildRunner.Runner.Common.MessageImportance">
+            <summary>
+            Specifies constants that define the importance of a build message.
+            </summary>
+        </member>
+        <member name="F:JetBrains.MsBuildRunner.Runner.Common.ProjectInstanceIdStorage.myRealProjectFilesToRelativeIds">
+            <summary>
+            List of project instance ids for each known project.
+            </summary>
+        </member>
+    </members>
+</doc>
