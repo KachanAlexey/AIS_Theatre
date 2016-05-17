@@ -16,6 +16,10 @@ namespace AIS_Theatre.Data
             return (Genre)base.MemberwiseClone();
         }
 
+        public Genre()
+        {
+        }
+
         public Genre(string name)
         {
             this.Id = Guid.NewGuid();
