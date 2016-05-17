@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AIS_Theatre.DAL
 {
-    internal class UserRepository : BaseRepository<Guid, User>, IUserRepository
+    public class UserRepository : BaseRepository<Guid, User>, IUserRepository
     {
         public UserRepository(NpgsqlConnection connection, NpgsqlTransaction transaction) : base(connection, transaction) { }
 
@@ -49,6 +49,17 @@ namespace AIS_Theatre.DAL
                     new SqlParameters()
                     {
                         {"Id", id.ToString()}
+                    }
+                );
+        }
+        public User GetUser(string login, string password)
+        {
+            return base.ExecuteSingleRowSelect(
+                    "select * from user_account where login_user = @Login and password_user = @Password",
+                    new SqlParameters()
+                    {
+                        {"Login", login},
+                        {"Password", password }
                     }
                 );
         }

@@ -29,6 +29,7 @@ namespace AIS_Theatre.DAL
         private ISettingRepository _settingRepository;
         private ISubscriptionRepository _subscriptionRepository;
         private ITicketRepository _ticketRepository;*/
+        private IUserRepository _userRepository;
         
         public UnitOfWork()
         {
@@ -187,6 +188,16 @@ namespace AIS_Theatre.DAL
                 return _ticketRepository;
             }
         }*/
+
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if (_userRepository == null)
+                    _userRepository = new UserRepository(_connection, _transaction);
+                return _userRepository;
+            }
+        }
 
         public void Dispose()
         {
