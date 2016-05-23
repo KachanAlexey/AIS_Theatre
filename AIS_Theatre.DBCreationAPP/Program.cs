@@ -10,7 +10,9 @@ namespace AIS_Theatre.DBCreationAPP
     class Program
     {
         private static string dbName = "theatre_db";
+		
         private static bool success = true;
+		
         static void Main(string[] args)
         {
             try
